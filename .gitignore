@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+.vscode/
+
+*.o
+*.a
+*.iso
+*.bin
