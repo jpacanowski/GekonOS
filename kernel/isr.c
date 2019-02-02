@@ -45,11 +45,11 @@ void isr_handler(registers_t regs)
     kprintf(exception_messages[regs.int_no]);
     kprintf(" Exception\n");
 
-    if(interrupt_handlers[regs.int_no] != 0)
-    {
-        isr_t handler = interrupt_handlers[regs.int_no];
-        handler(regs);
-    }
+    // if(interrupt_handlers[regs.int_no] != 0)
+    // {
+    //     isr_t handler = interrupt_handlers[regs.int_no];
+    //     handler(regs);
+    // }
 }
 
 void irq_handler(registers_t regs)

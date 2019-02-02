@@ -3,6 +3,7 @@
 #include <gdt.h>
 #include <idt.h>
 #include <timer.h>
+#include <gui.h>
 
 void kmain(u32 magic/*, multiboot_info_t mbi*/)
 {
@@ -30,6 +31,10 @@ void kmain(u32 magic/*, multiboot_info_t mbi*/)
 
     /* Initialize the Programmable Interval Timer (PIT) */
     timer_init(50);
+
+    //__asm__ __volatile__("sti");
+    //__asm__ __volatile__("int $0x3");
+    //__asm__ __volatile__("int $0x4");
 
     /* Remap the Programmable Interrupt Controllers (PICs) to new IDT entries */
     

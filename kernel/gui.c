@@ -108,7 +108,7 @@ void GUI_DrawWindows(void)
             VBE_DrawRect(x, y, w, h, 0xD8D8D8);//0xE9E9E8);
     
             /* Title bar */
-            VBE_DrawRect(x, y, w, y+22, isActive ? 0x4492D5 : 0x444444);//0x4492D5);
+            VBE_DrawRect(x, y, w, y+22, isActive ? 0x004C5D /*0x4492D5*/ : 0xBBC2C2 /*0x444444*/);//0x4492D5);
 
             /* Borders */
             VBE_DrawLine(x, y+22, x, h, 0xC4C5C5); /* Left border */

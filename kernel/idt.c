@@ -26,9 +26,9 @@ void IDT_Init(void)
     idt_ptr.limit = sizeof(idt_entry_t) * 256 - 1;
     idt_ptr.base = (u32)&idt_entries;
 
-    memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
+    //memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
 
-    /* Remapping the IRQ table */
+    /* Remap the PIC */
     outportb(PIC1_CTRL, ICW_1);
     outportb(PIC2_CTRL, ICW_1);
     outportb(PIC1_DATA, IRQ_0);
@@ -73,6 +73,7 @@ void IDT_Init(void)
     idt_set_gate(30, (u32)isr30, 0x08, 0x8E);
     idt_set_gate(31, (u32)isr31, 0x08, 0x8E);
 
+    /* Install the IRQs */
     idt_set_gate(32, (u32)irq0, 0x08, 0x8E);
     idt_set_gate(33, (u32)irq1, 0x08, 0x8E);
     idt_set_gate(34, (u32)irq2, 0x08, 0x8E);
