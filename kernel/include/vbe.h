@@ -1,7 +1,7 @@
 #ifndef VBE_H
 #define VBE_H
 
-#include <types.h>
+#include <stdint.h>
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
@@ -38,10 +38,10 @@
 #define VBE_DISPI_ID4   0xB0C4
 #define VBE_DISPI_ID5   0xB0C5
 
-void VBE_Write(USHORT index, USHORT value);
-void VBE_SetVideoMode(USHORT width, USHORT height, USHORT bpp);
-void VBE_DrawPixel(UINT x, UINT y, UINT rgbColor);
-void VBE_DrawRect(UINT x, UINT y, UINT x2, UINT y2, UINT rgbColor);
-void VBE_DrawLine(UINT x1, UINT y1, UINT x2, UINT y2, UINT rgbColor);
+void VBE_Write(uint16_t index, uint16_t value);
+void VBE_SetVideoMode(uint16_t width, uint16_t height, uint16_t bpp);
+void VBE_DrawPixel(uint32_t x, uint32_t y, uint32_t rgbColor);
+void VBE_DrawRect(uint32_t x, uint32_t y, uint32_t x2, uint32_t y2, uint32_t rgbColor);
+void VBE_DrawLine(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2, uint32_t rgbColor);
 
 #endif

@@ -1,27 +1,27 @@
 #ifndef IDT_H
 #define IDT_H
 
-#include <types.h>
+#include <stdint.h>
 
 typedef struct
 {
-    u16 base_lo;
-    u16 sel;    /* Our kernel segment goes here */
-    u8 always0; /* This will ALWAYS be set to 0 */
-    u8 flags;
-    u16 base_hi;
+    uint16_t base_lo;
+    uint16_t sel;    /* Our kernel segment goes here */
+    uint8_t always0; /* This will ALWAYS be set to 0 */
+    uint8_t flags;
+    uint16_t base_hi;
 }
 __attribute__((packed)) idt_entry_t;
 
 typedef struct
 {
-    u16 limit;
-    u32 base;
+    uint16_t limit;
+    uint32_t base;
 }
 __attribute__((packed)) idt_pointer_t;
 
 void IDT_Init(void);
-extern void idt_flush(u32 idt_ptr);
+extern void idt_flush(uint32_t idt_ptr);
 
 extern void isr0(void);
 extern void isr1(void);

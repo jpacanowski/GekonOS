@@ -4,15 +4,15 @@
 #include <math.h>
 #include <x86.h>
 
-UINT *vbeBuffer = (UINT *)0xFD000000;
+uint32_t *vbeBuffer = (uint32_t *)0xFD000000;
 
-void VBE_Write(USHORT index, USHORT value)
+void VBE_Write(uint16_t index, uint16_t value)
 {
     outportw(VBE_DISPI_IOPORT_INDEX, index);
     outportw(VBE_DISPI_IOPORT_DATA, value);
 }
 
-void VBE_SetVideoMode(USHORT width, USHORT height, USHORT bpp)
+void VBE_SetVideoMode(uint16_t width, uint16_t height, uint16_t bpp)
 {
     kprintf("Setting Bochs Graphics Adaptor video mode...\n");
 
@@ -25,20 +25,20 @@ void VBE_SetVideoMode(USHORT width, USHORT height, USHORT bpp)
         VBE_DISPI_LFB_ENABLED);
 }
 
-void VBE_DrawPixel(UINT x, UINT y, UINT rgbColor)
+void VBE_DrawPixel(uint32_t x, uint32_t y, uint32_t rgbColor)
 {
-    UINT pos = y * SCREEN_WIDTH + x;
+    uint32_t pos = y * SCREEN_WIDTH + x;
     *(vbeBuffer + pos) = rgbColor;
 }
 
-void VBE_DrawRect(UINT x, UINT y, UINT x2, UINT y2, UINT rgbColor)
+void VBE_DrawRect(uint32_t x, uint32_t y, uint32_t x2, uint32_t y2, uint32_t rgbColor)
 {
-    for(UINT ty=y; ty<y2; ty++)
-        for(UINT tx=x; tx<x2; tx++)
+    for(uint32_t ty=y; ty<y2; ty++)
+        for(uint32_t tx=x; tx<x2; tx++)
             VBE_DrawPixel(tx, ty, rgbColor);
 }
 
-void VBE_DrawLine(UINT x1, UINT y1, UINT x2, UINT y2, UINT rgbColor)
+void VBE_DrawLine(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2, uint32_t rgbColor)
 {
     int sx, sy, dx1=0, dy1, dx2, dy2, x, y, m, n, k=0, cnt;
 

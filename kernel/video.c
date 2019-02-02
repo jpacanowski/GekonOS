@@ -6,14 +6,14 @@
 #include <types.h>
 #include <x86.h>
 
-static USHORT *vidptr;
-UCHAR cursor_x = 0;
-UCHAR cursor_y = 0;
-UCHAR attr = 0;
+static uint16_t *vidptr;
+uint8_t cursor_x = 0;
+uint8_t cursor_y = 0;
+uint8_t attr = 0;
 
 void Video_Init(void)
 {
-    vidptr = (USHORT*)0xB8000;
+    vidptr = (uint16_t*)0xB8000;
     
     // 0 <- black (background color)
     // 7 <- grey (foreground color)
@@ -26,7 +26,7 @@ void Video_Init(void)
 
 void ClearScreen(void)
 {
-    USHORT blank = ' ' | (attr << 8);
+    uint16_t blank = ' ' | (attr << 8);
     
     for(int i=0; i<(80*25); i++)
     {
@@ -40,7 +40,7 @@ void ClearScreen(void)
 
 void ScrollScreen(void)
 {
-    USHORT blank = ' ' | (attr << 8);
+    uint16_t blank = ' ' | (attr << 8);
     
     if(cursor_y >= 25)
     {
@@ -65,7 +65,7 @@ void SetColor(char color)
 
 void MoveCursor(void)
 {
-    USHORT CursorLocation = cursor_y * 80 + cursor_x;
+    uint16_t CursorLocation = cursor_y * 80 + cursor_x;
     
     /* Tell the VGA board we are setting the high cursor byte */
     outportb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);

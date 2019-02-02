@@ -5,7 +5,7 @@
 #include <timer.h>
 #include <gui.h>
 
-void kmain(u32 magic/*, multiboot_info_t mbi*/)
+void kmain(uint32_t magic/*, multiboot_info_t mbi*/)
 {
     /* Initialize the video text mode */
     Video_Init();
@@ -25,7 +25,7 @@ void kmain(u32 magic/*, multiboot_info_t mbi*/)
     //__asm__ __volatile__("sti");
     //__asm__ __volatile__("int $0x3");
     //__asm__ __volatile__("int $0x4");
-    //__asm__ __volatile__("sti");
+    __asm__ __volatile__("sti");
 
     /* Initialize Task State Segment (TSS) */
 

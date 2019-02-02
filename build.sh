@@ -3,10 +3,10 @@ clear
 
 # default variables
 CFLAGS="-m32 -c -g -O2 -W -Wall -Wextra -Werror "\
-"-ffreestanding -std=gnu99 -fno-builtin -nostdinc -Ikernel/include -Ilibc/include"
+"-ffreestanding -std=gnu99 -fno-builtin -Ikernel/include -Ilibc/include"
 
 CFLAGS_LIBC="-m32 -c -g -O2 -W -Wall -Wextra -Werror "\
-"-ffreestanding -std=gnu99 -fno-builtin -nostdinc -Ikernel/include -Ilibc/include"
+"-ffreestanding -std=gnu99 -fno-builtin -Ikernel/include -Ilibc/include"
 
 OBJ=""
 

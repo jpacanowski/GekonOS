@@ -41,8 +41,8 @@ void GDT_Init(void)
     gdt_set_gate(3, 0, 0xFFFFFFFF, 0xFA, 0xCF); // DPL3 Code segment
     gdt_set_gate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF); // DPL3 Data segment
 
-    gdt_ptr.base = (u32)&gdt_entries;
+    gdt_ptr.base = (uint32_t)&gdt_entries;
     gdt_ptr.limit = sizeof(gdt_entries) - 1;
 
-    gdt_flush((u32)&gdt_ptr);
+    gdt_flush((uint32_t)&gdt_ptr);
 }

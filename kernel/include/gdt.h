@@ -1,7 +1,7 @@
 #ifndef GDT_H
 #define GDT_H
 
-#include <types.h>
+#include <stdint.h>
 
 typedef struct
 {
@@ -25,6 +25,6 @@ void GDT_Init(void);
 // void gdt_set_gate(uint8_t num,
 //                 uint32_t base, uint32_t limit,
 //                 uint8_t access, uint8_t gran);
-extern void gdt_flush(u32 gdt_ptr);
+extern void gdt_flush(uint32_t gdt_ptr);
 
 #endif

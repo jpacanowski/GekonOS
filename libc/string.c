@@ -1,4 +1,4 @@
-#include <types.h>
+#include <stdint.h>
 
 int strlen(const char s[])
 {
@@ -8,9 +8,16 @@ int strlen(const char s[])
     return i;
 }
 
-void memset(void *desc, u8 val, u32 len)
+void memset(void *desc, uint8_t val, uint32_t len)
 {
-    u8 *temp = (u8 *)desc;
+    uint8_t *temp = (uint8_t *)desc;
     for(; len != 0; len--)
         *temp++ = val;
+}
+
+void memcpy(uint8_t *source, uint8_t *dest, int nbytes)
+{
+    for (int i = 0; i < nbytes; i++) {
+        *(dest + i) = *(source + i);
+    }
 }

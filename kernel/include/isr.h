@@ -1,7 +1,7 @@
 #ifndef ISR_H
 #define ISR_H
 
-#include <types.h>
+#include <stdint.h>
 
 #define IRQ0 32
 #define IRQ1 33
@@ -23,21 +23,21 @@
 typedef struct
 {
     /* data segment selector */
-    u32 ds;
+    uint32_t ds;
     
     /* pushed by pusha */
-    u32 edi, esi, ebp, esp, ebx, edx, ecx, eax;
+    uint32_t edi, esi, ebp, useless, ebx, edx, ecx, eax;
     
     /* interrupt number and error code (if applicable) */
-    u32 int_no, err_code;
+    uint32_t int_no, err_code;
     
     /* pushed by the processor automatically */
-    u32 eip, cs, eflags, useresp, ss;
+    uint32_t eip, cs, eflags, esp, ss;
 }
 registers_t;
 
-typedef void (*isr_t)(registers_t);
+typedef void (*isr_t)(registers_t*);
 
-void register_interrupt_handler(u8 n, isr_t handler);
+void register_interrupt_handler(uint8_t n, isr_t handler);
 
 #endif

@@ -1,15 +1,18 @@
 #ifndef GUI_H
 #define GUI_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #define MAX_WINDOWS 100
 
 typedef struct
 {
-    u16 x;
-    u16 y;
-    u16 w;
-    u16 h;
-    u16 id;
+    uint16_t x;
+    uint16_t y;
+    uint16_t w;
+    uint16_t h;
+    uint16_t id;
     char title[80];
     bool active;
 
