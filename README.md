@@ -1,5 +1,5 @@
 # GekonOS
-GekonOS is a hobbyist, educational, lightweight,completely independent, Unix-like operating system built entirely from scratch.
+GekonOS is a hobby, educational, lightweight, and completely independent, Unix-like operating system built entirely from scratch.
 
 ### Setting up the programming environment
 
@@ -14,22 +14,22 @@ $ sudo apt upgrade
 ```sh
 $ sudo apt install nasm
 ```
-(Install this to compile assembly source files)
+(Install NASM to compile assembly source files)
 
 ```sh
 $ sudo apt install build-essential
 ```
-(Install this to build the cross-compiler)
+(Install build-essential to build the cross-compiler)
 
 ```sh
 $ sudo apt install xorriso
 ```
-(Install this to create CD images)
+(Install xorriso to create CD images)
 
 ```sh
 $ sudo apt install grub-mkrescue
 ```
-(Install this for GRUB bootloader)
+(Install grub-mkrescue to create GRUB bootloader when creating CD images)
 
 ```sh
 $ sudo apt install qemu
