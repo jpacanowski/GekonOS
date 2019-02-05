@@ -33,7 +33,7 @@ void GUI_Init(void)
     (void)GUI_CreateWindow(160, 160, 480, 380, "Window 1");
     (void)GUI_CreateWindow(200, 200, 520, 420, "Window 2");
     
-    //while(true)
+    while(true)
     {
         GUI_DrawDesktop();
         GUI_DrawTaskBar();

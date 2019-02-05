@@ -26,19 +26,11 @@ void IDT_Init(void)
     idt_ptr.limit = sizeof(idt_entry_t) * 256 - 1;
     idt_ptr.base = (uint32_t)&idt_entries;
 
-    //memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
+    /* Null out the IDT entries */
+    memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
 
-    /* Remap the PIC */
-    outportb(PIC1_CTRL, ICW_1);
-    outportb(PIC2_CTRL, ICW_1);
-    outportb(PIC1_DATA, IRQ_0);
-    outportb(PIC2_DATA, IRQ_8);
-    outportb(PIC1_DATA, 0x04);
-    outportb(PIC2_DATA, 0x02);
-    outportb(PIC1_DATA, 0x01);
-    outportb(PIC2_DATA, 0x01);
-    outportb(PIC1_DATA, 0x00);
-    outportb(PIC2_DATA, 0x00);
+    /* Remapping the PIC to new IDT entries */
+    irq_remap();
 
     idt_set_gate(0, (uint32_t)isr0, 0x08, 0x8E);
     idt_set_gate(1, (uint32_t)isr1, 0x08, 0x8E);
@@ -73,7 +65,7 @@ void IDT_Init(void)
     idt_set_gate(30, (uint32_t)isr30, 0x08, 0x8E);
     idt_set_gate(31, (uint32_t)isr31, 0x08, 0x8E);
 
-    /* Install the IRQs */
+    /* Installing the IRQs */
     idt_set_gate(32, (uint32_t)irq0, 0x08, 0x8E);
     idt_set_gate(33, (uint32_t)irq1, 0x08, 0x8E);
     idt_set_gate(34, (uint32_t)irq2, 0x08, 0x8E);

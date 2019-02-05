@@ -3,14 +3,14 @@
 #include <video.h>
 #include <isr.h>
 
-uint32_t ticks = 0;
+uint64_t ticks = 0;
 
 static void timer_callback(registers_t *r)
 {
     (void)r;
     ticks++;
 
-    kprintf("Tick: %d\n", ticks);
+    //kprintf("Tick: %d\n", ticks);
 }
 
 void timer_init(uint32_t frequency)

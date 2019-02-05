@@ -21,6 +21,8 @@ void Video_Init(void)
     
     ClearScreen();
     
+    kprintf("Starting GekonOS...\n");
+    kprintf("(build: %s %s)\n\n", __DATE__, __TIME__);
     kprintf("Initializing Video Text Mode...\n");
 }
 
@@ -103,6 +105,28 @@ void kprintf(const char *str, ...)
                 if(str[i+1] == 'd')
                 {
                     itoa(va_arg(args, int), buffer, 10);
+                    for (int n = 0; buffer[n] != '\0'; n++)
+                    {
+                        int pos = (cursor_y * 80 + cursor_x);
+                        *(vidptr + pos + n) = buffer[n] | (attr << 8);
+                    }
+                    cursor_x += strlen(buffer);
+                    i++;
+                }
+                else if(str[i+1] == 'c')
+                {
+                    char letter = va_arg(args, int);
+                    //for (int n = 0; buffer[n] != '\0'; n++)
+                    {
+                        int pos = (cursor_y * 80 + cursor_x);
+                        *(vidptr + pos) = letter | (attr << 8);
+                    }
+                    cursor_x++;// += strlen(buffer);
+                    i++;
+                }
+                else if(str[i+1] == 's')
+                {
+                    strcpy(buffer, va_arg(args, char*));
                     for (int n = 0; buffer[n] != '\0'; n++)
                     {
                         int pos = (cursor_y * 80 + cursor_x);

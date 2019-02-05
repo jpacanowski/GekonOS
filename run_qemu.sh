@@ -1,0 +1,1 @@
+qemu-system-i386 -m 32 -cdrom GekonOS.iso

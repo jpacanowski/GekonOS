@@ -33,6 +33,7 @@ void GDT_Init(void)
 {
     kprintf("Initializing Global Descriptor Table (GDT)...\n");
     
+    /* Null out the GDT entries */
     memset(&gdt_entries, 0, sizeof(gdt_entry_t)*5);
 
     gdt_set_gate(0, 0, 0x00000000, 0x00, 0x00); // NULL segment

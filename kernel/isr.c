@@ -44,17 +44,11 @@ void isr_handler(registers_t *regs)
     //kprintf("ISR interrupt: %d\n", regs.int_no);
     kprintf(exception_messages[regs->int_no]);
     kprintf(" Exception\n");
-
-    // if(interrupt_handlers[regs->int_no] != 0)
-    // {
-    //     isr_t handler = interrupt_handlers[regs->int_no];
-    //     handler(regs);
-    // }
 }
 
 void irq_handler(registers_t *regs)
 {
-    //kprintf("IRQ interrupt: %d\n", regs.int_no);
+    //kprintf("IRQ interrupt: %d\n", regs->int_no);
 
     // After every interrupt we need to send an EOI to the PICs
     // or they will not send another interrupt again

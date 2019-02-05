@@ -1,7 +1,8 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
-#define NULL  ((void *) 0)
+#define UNUSED(x) (void)(x)
+#define NULL  (0)
 
 //typedef signed char         int8_t;
 //typedef signed short        int16_t;
