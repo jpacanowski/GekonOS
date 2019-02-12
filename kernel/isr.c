@@ -42,8 +42,13 @@ char *exception_messages[] = {
 void isr_handler(registers_t *regs)
 {
     //kprintf("ISR interrupt: %d\n", regs.int_no);
-    kprintf(exception_messages[regs->int_no]);
-    kprintf(" Exception\n");
+    kpanic("%s Exception", exception_messages[regs->int_no]);
+
+    if(interrupt_handlers[regs->int_no] != 0)
+    {
+        isr_t handler = interrupt_handlers[regs->int_no];
+        handler(regs);
+    }
 }
 
 void irq_handler(registers_t *regs)
@@ -71,4 +76,9 @@ void irq_handler(registers_t *regs)
 void register_interrupt_handler(uint8_t n, isr_t handler)
 {
     interrupt_handlers[n] = handler;
+}
+
+void unregister_interrupt_handler(uint8_t n)
+{
+    interrupt_handlers[n] = 0;
 }

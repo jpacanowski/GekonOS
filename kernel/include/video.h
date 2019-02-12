@@ -2,6 +2,7 @@
 #define _VIDEO_H_
 
 #include <types.h>
+#include <stdint.h>
 
 #define COLUMNS 80
 #define LINES 25
@@ -33,6 +34,8 @@ void MoveCursor(void);
 void ClearScreen(void);
 void ScrollScreen(void);
 void SetColor(char color);
+void SetAttribute(char background, char foreground);
+void SetCursor(uint16_t cursor_x, uint16_t cursor_y);
 void kprintf(const char *str, ...);
 void kpanic(const char *str, ...);
 

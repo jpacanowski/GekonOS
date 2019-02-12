@@ -9,12 +9,12 @@ Several packages are necessary to build GekonOS from source.
 $ sudo apt update
 $ sudo apt upgrade
 ```
-(first, update the package lists)
+(First, update the package lists)
 
 ```sh
 $ sudo apt install nasm
 ```
-(Install NASM to compile assembly source files)
+(Install NASM to compile assembly source code files)
 
 ```sh
 $ sudo apt install build-essential

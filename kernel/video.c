@@ -65,8 +65,30 @@ void SetColor(char color)
     attr = (0 << 4) | (color & 0x0F);
 }
 
+void SetAttribute(char background, char foreground)
+{
+    attr = (background << 4) | (foreground & 0x0F);
+}
+
 void MoveCursor(void)
 {
+    uint16_t CursorLocation = cursor_y * 80 + cursor_x;
+    
+    /* Tell the VGA board we are setting the high cursor byte */
+    outportb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
+    /* Send the high cursor byte */
+    outportb(FB_DATA_PORT, ((CursorLocation >> 8) & 0x00FF));
+    /* Tell the VGA board we are setting the low cursor byte */
+    outportb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
+    /* Send the low cursor byte */
+    outportb(FB_DATA_PORT, CursorLocation & 0x00FF);
+}
+
+void SetCursor(uint16_t x, uint16_t y)
+{
+    cursor_x = x;
+    cursor_y = y;
+    
     uint16_t CursorLocation = cursor_y * 80 + cursor_x;
     
     /* Tell the VGA board we are setting the high cursor byte */

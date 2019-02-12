@@ -23,6 +23,7 @@ void IDT_Init(void)
 {
     kprintf("Initializing Interrupt Descriptor Table (IDT)...\n");
 
+    /* Set the IDT pointer up */
     idt_ptr.limit = sizeof(idt_entry_t) * 256 - 1;
     idt_ptr.base = (uint32_t)&idt_entries;
 
@@ -32,6 +33,7 @@ void IDT_Init(void)
     /* Remapping the PIC to new IDT entries */
     irq_remap();
 
+    /* Installing the ISRs */
     idt_set_gate(0, (uint32_t)isr0, 0x08, 0x8E);
     idt_set_gate(1, (uint32_t)isr1, 0x08, 0x8E);
     idt_set_gate(2, (uint32_t)isr2, 0x08, 0x8E);
